@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+  <div >
+    <h2>User login</h2>    
+
+    <label for="email">Email:</label>
+    <input type="email" id="em" name="email" required><br><br>
+    
+    <label for="name"> Password:</label>
+    <input type="password" id="ps" name="password" required><br><br>
+    
+    <button id="login">Sign in </button>
+  </div>
+    
+</body>
+
+
+
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAirff4J5ichKC-l-fNy15_s6iAAI1rix0",
+    authDomain: "login-fc6d8.firebaseapp.com",
+    projectId: "login-fc6d8",
+    storageBucket: "login-fc6d8.appspot.com",
+    messagingSenderId: "445026337304",
+    appId: "1:445026337304:web:f11612084115066b52396d"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+
+  login.addEventListener('click',(e)=>{
+
+var email = document.getElementById('em').value;
+var password = document.getElementById('ps').value;
+
+    const auth = getAuth(app);
+signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    
+     // Signed in 
+    const user = userCredential.user;
+    alert('login success , Redirecting...');
+    // ...
+    location.href='https://www.youtube.com/'
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage);
+  });
+  
+  });
+
+
+</script>
+
+
+</html>

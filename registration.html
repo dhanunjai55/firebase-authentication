@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="styler.css">
+</head>
+<body>
+
+      <div>
+                <h2>User Registration</h2>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" ><br><br>
+
+        <label for="name"> Password:</label>
+        <input type="password" id="pass" name="password"><br><br>
+
+    
+        <button id="signup">Sign up </button><br><br>
+
+        
+        <button id="login">sign in</button>
+      </div>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+  
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAirff4J5ichKC-l-fNy15_s6iAAI1rix0",
+      authDomain: "login-fc6d8.firebaseapp.com",
+      projectId: "login-fc6d8",
+      storageBucket: "login-fc6d8.appspot.com",
+      messagingSenderId: "445026337304",
+      appId: "1:445026337304:web:f11612084115066b52396d"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+  
+    signup.addEventListener('click',(e)=>{
+  
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('pass').value;
+      createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      alert('registered');
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+      alert(errorMessage);
+    });
+  
+    });
+    login.addEventListener('click',(e)=>{
+      location.href='http://127.0.0.1:5500/login.html';
+    });
+
+  </script>
+  
+</html>
